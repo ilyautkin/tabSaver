@@ -39,4 +39,16 @@ class tabSaver {
 		$this->modx->lexicon->load('tabsaver:default');
 	}
 
+        /**
+         * Запускает процессор из папки zsrehab
+         * @param string $action расположение процессора
+         * @param array $data данные для передачи в процессор
+         * @return $response modResponseObject
+         */
+        public function runProcessor($action = '', array $data = array()) {
+                if (empty($action)) {
+                    return false;
+                }
+                return $this->modx->runProcessor($action, $data, array('processors_path' => $this->config['processorsPath'].'mgr/'));
+        }
 }

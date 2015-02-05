@@ -2,13 +2,12 @@
 
 $settings = array();
 
-$tmp = array(/*
-	'some_setting' => array(
-		'xtype' => 'combo-boolean',
-		'value' => true,
+$tmp = array(
+	'rca_key' => array(
+		'xtype' => 'textfield',
+		'value' => '',
 		'area' => 'tabsaver_main',
 	),
-	*/
 );
 
 foreach ($tmp as $k => $v) {
