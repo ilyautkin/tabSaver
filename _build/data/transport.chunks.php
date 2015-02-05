@@ -3,10 +3,10 @@
 $chunks = array();
 
 $tmp = array(
-	'tpl.tabSaver.item' => array(
+	/*'tpl.tabSaver.item' => array(
 		'file' => 'item',
 		'description' => '',
-	),
+	),*/
 );
 
 // Save chunks for setup options

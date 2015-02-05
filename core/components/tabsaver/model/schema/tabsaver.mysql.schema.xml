@@ -2,17 +2,32 @@
 <model package="tabsaver" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM" phpdoc-package="tabsaver"
 	   version="1.1">
 
-	<object class="tabSaverItem" table="tabsaver_items" extends="xPDOSimpleObject">
-		<field key="name" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
-		<field key="description" dbtype="text" phptype="text" null="true" default=""/>
-		<field key="active" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="1"/>
+	<object class="tabSaverTab" table="tabsaver_tab" extends="xPDOSimpleObject">
+		<field key="url" dbtype="text" phptype="string" null="false" />
+		<field key="title" dbtype="varchar" precision="255" phptype="string" null="false" />
+		<field key="img" dbtype="text" phptype="string" null="true" />
+		<field key="content" dbtype="text" phptype="string" null="false" />
+		<field key="uid" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" index="index" />
+		<field key="added_on" dbtype="timestamp" phptype="timestamp" null="false" default="CURRENT_TIMESTAMP" />
+		<field key="loaded" dbtype="tinyint" precision="1" attributes="unsigned" phptype="integer" null="false" default="0" />
+		<field key="read" dbtype="tinyint" precision="1" attributes="unsigned" phptype="integer" null="false" default="0" />
+		<field key="deleted" dbtype="tinyint" precision="1" attributes="unsigned" phptype="integer" null="false" default="0" />
+		<field key="extended" dbtype="text" phptype="string" null="true" />
 
-		<index alias="name" name="name" primary="false" unique="false" type="BTREE">
-			<column key="name" length="" collation="A" null="false"/>
+		<index alias="uid" name="uid" primary="false" unique="false" type="BTREE">
+			<column key="uid" length="" collation="A" null="false" />
 		</index>
-		<index alias="active" name="active" primary="false" unique="false" type="BTREE">
-			<column key="active" length="" collation="A" null="false"/>
+		<index alias="loaded" name="loaded" primary="false" unique="false" type="BTREE">
+			<column key="loaded" length="" collation="A" null="false" />
 		</index>
+		<index alias="read" name="read" primary="false" unique="false" type="BTREE">
+			<column key="read" length="" collation="A" null="false" />
+		</index>
+		<index alias="deleted" name="deleted" primary="false" unique="false" type="BTREE">
+			<column key="deleted" length="" collation="A" null="false" />
+		</index>
+		
+		<aggregate alias="User" class="modUser" local="uid" foreign="id" cardinality="one" owner="foreign" />
 	</object>
 
 </model>

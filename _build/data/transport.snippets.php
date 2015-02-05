@@ -3,10 +3,10 @@
 $snippets = array();
 
 $tmp = array(
-	'tabSaver' => array(
+	/*'tabSaver' => array(
 		'file' => 'tabsaver',
 		'description' => '',
-	),
+	),*/
 );
 
 foreach ($tmp as $k => $v) {

@@ -17,7 +17,7 @@ $sources = array(
 unset($root);
 
 require MODX_CORE_PATH . 'model/modx/modx.class.php';
-require $sources['build'] . '/includes/functions.php';
+require $sources['build'] . 'includes/functions.php';
 
 $modx = new modX();
 $modx->initialize('mgr');
