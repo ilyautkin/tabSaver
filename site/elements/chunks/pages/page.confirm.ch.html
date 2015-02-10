@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="col-sm-offset-2 col-sm-7">
+    <br><br><br>
+	[[!ConfirmRegister? &authenticate=`1` &errorPage=`[[++site_start]]`]]
+	<script type="text/javascript">
+	  setTimeout('document.getElementById("timer_inp").innerHTML = "через <b>4</b> секунды"', 1000);
+	  setTimeout('document.getElementById("timer_inp").innerHTML = "через <b>3</b> секунды"', 2000);
+	  setTimeout('document.getElementById("timer_inp").innerHTML = "через <b>2</b> секунды"', 3000);
+	  setTimeout('document.getElementById("timer_inp").innerHTML = "через <b>1</b> секунду"', 4000);
+	  setTimeout('document.getElementById("timer_inp").innerHTML = "<b>прямо сейчас</b>"', 5000);
+	  setTimeout('document.location.href="[[++site_url]]"', 5000);
+	</script>
+	<br><br>
+	<p>Страничка вашего <a href="[[++site_url]]">личного кабинета</a> откроется <span id="timer_inp">через <b>5</b> секунд</span></p>
+    </div>
+</div>

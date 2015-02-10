@@ -7,7 +7,7 @@ if (!$tabSaver = $modx->getService('tabsaver', 'tabSaver', $modx->getOption('tab
 }
 
 /*
-$response = $modx->runProcessor('tab/create', array('url' => 'https://ilyaut.ru/tips-and-tricks/create-a-build-of-modx-revo/'), array('processors_path' => $modx->getOption('core_path').'components/tabsaver/processors/mgr/'));
+$response = $modx->runProcessor('tab/create', array('url' => 'http://lenta.ru/news/2015/02/05/prsdntsalary/'), array('processors_path' => $modx->getOption('core_path').'components/tabsaver/processors/mgr/'));
 print '<pre>';
 print_r($response->response);
 print '</pre>';

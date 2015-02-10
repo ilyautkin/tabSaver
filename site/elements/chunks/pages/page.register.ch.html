@@ -1,0 +1,73 @@
+[[!Register?
+    &submitVar=`registerbtn`
+    &activation=`1`
+    &activationEmailSubject=`Подтверждение регистрации`
+    &activationResourceId=`5`
+    &successMsg=`Вам нужно подтвердить свою регистрацию.`
+    &usergroups=`Users`
+    &validate=`nospam:blank,
+      password:required:minLength=^8^,
+      password_confirm:password_confirm=^password^,
+      fullname:required,
+      email:required:email`
+    &usernameField=`email`
+    &placeholderPrefix=`reg.`
+]]
+[[!+error.message:eq=``:then=`
+     <div class="row">
+      <form action="[[~[[*id]]]]" class="form-horizontal col-md-offset-2 col-md-7" method="post">
+		<h2 class="col-sm-offset-4 col-sm-8"><br><br>[[*longtitle:default=`[[*pagetitle]]`]]<br><br></h2>
+        <input type="hidden" name="nospam" value="[[!+reg.nospam]]" />
+        <div class="form-group">
+        <label for="email" class="col-sm-4 control-label">Электронная почта</label>
+        <div class="col-sm-8">
+            <input type="email" class="form-control" name="email" value="[[!+reg.email]]" />
+            <span class="text-danger">
+                [[!+reg.error.email]]
+            </span>
+        </div>
+        </div>
+        
+        <div class="form-group">
+        <label for="password" class="col-sm-4 control-label">Пароль</label>
+        <div class="col-sm-8">
+            <input type="password" class="form-control" name="password"
+                        value="[[!+reg.password]]" />
+            <span class="text-danger">
+                [[!+reg.error.password]]
+            </span>
+        </div>
+        </div>
+        
+        <div class="form-group">
+        <label for="password_confirm" class="col-sm-4 control-label">Пароль еще раз</label>
+        <div class="col-sm-8">
+            <input type="password" class="form-control" name="password_confirm"
+                        value="[[!+reg.password_confirm]]" />
+            <span class="text-danger">
+                [[!+reg.error.password_confirm]]
+            </span>
+        </div>
+        </div>
+        
+        <div class="form-group">
+        <label for="fullname" class="col-sm-4 control-label">Имя и фамилия</label>
+        <div class="col-sm-8">
+            <input type="text" name="fullname" class="form-control"
+                        value="[[!+reg.fullname:Jevix]]" />
+            <span class="text-danger">
+                [[!+reg.error.fullname]]
+            </span>
+        </div>
+        </div>
+        
+        <div class="form-group">
+        <div class="col-sm-offset-4 col-sm-8">
+            <input type="submit" value="Зарегистрироваться!"
+                    name="registerbtn" class="btn btn-default" />
+        </div>
+        </div>
+       </form>
+      </div>
+
+`:else=`<div class="alert alert-success">[[!+error.message]]</div>`]]

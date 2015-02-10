@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		[[!$block.Head]]
+[[!$block.Head]]
 	</head>
-	<body>
-		[[!$block.Navbar]]
+	<body class="[[*id:eq=`[[++site_start]]`:then=`mainpage`:else=``]] [[!+modx.user.id:gt=`0`:then=`tabspage`:else=``]]">
 		<div class="container">
-			[[!$block.Crumbs]]
 			<div id="content" class="inner">
-				[[!$block.Content.inner]]
+				[[*content]]
 			</div>
-			[[!$block.Footer]]
 		</div>
 	</body>
 </html>
