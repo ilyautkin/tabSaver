@@ -4,8 +4,8 @@
  * Create an Item
  */
 class tabSaverItemCreateProcessor extends modObjectCreateProcessor {
-	public $objectType = 'TabsaverTab';
-	public $classKey = 'TabsaverTab';
+	public $objectType = 'tabSaverTab';
+	public $classKey = 'tabSaverTab';
 	public $languageTopics = array('tabsaver');
         //public $permission = 'create';
 
@@ -26,11 +26,9 @@ class tabSaverItemCreateProcessor extends modObjectCreateProcessor {
                     $this->modx->error->addField('url', $this->modx->lexicon('tabsaver_item_err_url'));
                     return false;
 		}
-		elseif ($dublicate = $this->modx->getObject($this->classKey, array('url' => $url, 'uid' => $uid))) {
-                    if (!$dublicate->get('deleted')) {
-                        $dublicate->set('deleted', 1);
-                        $dublicate->save();
-                    }
+		elseif ($dublicate = $this->modx->getObject($this->classKey, array('url' => $url, 'uid' => $uid, 'deleted' => 0))) {
+                    $dublicate->set('deleted', 1);
+                    $dublicate->save();
 		}
                 if (!$rcaKey = $this->modx->getOption('tabsaver_rca_key')) {
                     $this->modx->error->addField('url', $this->modx->lexicon('tabsaver_item_err_rca_key'));

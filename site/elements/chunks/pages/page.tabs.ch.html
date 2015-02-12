@@ -2,54 +2,92 @@
 <div class="jumbotron">
 	<h2>[[*pagetitle]]</h2>
 	<p>[[*introtext]]</p>
-	<div class="row">
+	<div class="row" style="position: relative;">
 		<div class="col-xs-10">
-			<input type="url" name="url" placeholder="URL" class="form-control">
+			<input type="url" name="url" id="url-input" placeholder="URL" class="form-control" value="[[!get? &need=`url`]]">
 		</div>
 		<div class="col-xs-2">
-			<span class="btn btn-success form-control">Сохранить</span>
+			<span class="btn btn-success form-control" id="save-btn">Сохранить</span>
+		</div>
+		<div id="progress-wrapper" class="jumbotron">
+			<div class="progress"><div class="progress-bar" role="progressbar" id="adding-progress"></div></div>
 		</div>
 	</div>
 </div>
-<div class="list-group">
-	<div class="list-group-item read">
-	  <div class="glyphicon glyphicon-star-empty text-info readicon"></div>
-	  <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9Ijc1IiB5PSIxMDAiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTBwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj4yMDB4MjAwPC90ZXh0PjwvZz48L3N2Zz4=">
-	  <div class="item-content">
-		  <h3 class="list-group-item-heading">Обама высказал опасения по поставкам оружия на Украину</h3>
-		  <p class="list-group-item-text">Американский президент Барак Обама не уверен, даст ли летальное оружие из США преимущество украинским войскам или же оно только обострит конфликт. Он опасается, что поставленное вооружение может попасть «в чужие руки». Обама также не знает, как отреагируют на это ополченцы и Россия.</p>
-	  </div>
-	</div>
-	<div class="list-group-item">
-	  <div class="glyphicon glyphicon-star text-info readicon"></div>
-	  <div class="image-placeholder"></div>
-	  <div class="item-content">
-		  <h3 class="list-group-item-heading">Дочь Гагарина стала офицером ордена Почетного легиона</h3>
-		  <p class="list-group-item-text">Американский телеканал CNN, освещая вопрос возможной поставки летального оружия на Украину, назвал украинскую армию «проамериканской».</p>
-	  </div>
-	</div>
-	<div class="list-group-item read">
-	  <div class="glyphicon glyphicon-star-empty text-info readicon"></div>
-	  <div class="image-placeholder"></div>
-	  <div class="item-content">
-		  <h3 class="list-group-item-heading">CNN назвал украинские войска «проамериканскими»</h3>
-		  <p class="list-group-item-text">Американский телеканал CNN, освещая вопрос возможной поставки летального оружия на Украину, назвал украинскую армию «проамериканской».</p>
-	  </div>
-	</div>
-	<div class="list-group-item">
-	  <div class="glyphicon glyphicon-star text-info readicon"></div>
-	  <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9Ijc1IiB5PSIxMDAiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTBwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj4yMDB4MjAwPC90ZXh0PjwvZz48L3N2Zz4=">
-	  <div class="item-content">
-		  <h3 class="list-group-item-heading">Генеральный директор музеев Московского Кремля и генеральный директор Большого театра произведены в офицеры ордена Почетного легиона, сообщает в понедельник, 9 февраля, ТАСС. Награды им вручил посол Франции в РФ.</h3>
-		  <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit. Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit. Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit. Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit. Donec id elit non mi porta gravida at eget metus.</p>
-	  </div>
-	</div>
-	<div class="list-group-item">
-	  <div class="glyphicon glyphicon-star text-info readicon"></div>
-	  <div class="image-placeholder"></div>
-	  <div class="item-content">
-		  <h3 class="list-group-item-heading">Чуркин допустил возможность присутствия миротворцев ООН на Украине возможность присутствия миротворцев ООН на Украине</h3>
-		  <p class="list-group-item-text">Постпред России при Организации Объединенных Наций Виталий Чуркин допустил присутствие миротворцев ООН в зоне конфликта на Украине. Об этом он заявил в эфире телеканала «Россия-24».</p>
-	  </div>
-	</div>
+<div class="list-group" id="pages-list">
+    [[!pdoResources?
+        &class=`tabSaverTab`
+        &loadModels=`tabsaver`
+        &select=`tabSaverTab.*`
+        &sortby=`{"id":"DESC"}`
+        &where=`{"uid":[[!+modx.user.id]],"deleted":0}`
+        &tpl=`tpl.tabSaverTab`
+    ]]
 </div>
+<script type="text/javascript">
+	function animateProgress(elem, parent, width, delta){
+		delta = delta / 1.1 || 5;
+		width = width || 30;
+		window.setTimeout(function(){
+			elem.css({width: (width + delta) + '%'});
+			console.log((width + delta) + '%');
+			if (window.complite) {
+				elem.css({width: '100%'});
+				window.setTimeout(function(){
+					parent.hide();
+					elem.css({width: 0});
+				}, 500);
+			} else {
+				animateProgress(elem, parent, width + delta, delta);
+			}
+		}, 500);
+
+	}
+	function saveUrl(url) {
+		$('#progress-wrapper').show();
+		$('#url-input').parent().removeClass('has-error');
+		$('#url-input').attr('disabled','disabled');
+		$('#save-btn').addClass('disabled');
+		window.complite = false;
+		animateProgress($('#adding-progress'), $('#progress-wrapper'));
+		$.post(document.location.href.split('?')[0], {url: url}, function(data){
+			$('#url-input').removeAttr('disabled');
+			$('#save-btn').removeClass('disabled');
+			//$('#new-item').replaceWith(data.html);
+                        if (data.success) {
+                            $('#url-input').val('');
+                            $('#pages-list').prepend(data.html);
+                        } else {
+                            $('#url-input').parent().addClass('has-error');
+                        }
+			window.complite = true;
+			window.success = data.success;
+			$(document).trigger("as_complete");
+		}, 'json');
+	}
+        function sendUrl() {
+            if (!$('#save-btn').hasClass('disabled') && $('#url-input').val() != '') {
+                    saveUrl($('#url-input').val());
+            } else if($('#url-input').val() == '') {
+                    $('#url-input').parent().addClass('has-error');
+            }
+        }
+	if ($('#url-input').val() != '') {
+		saveUrl($('#url-input').val());
+	}
+	$(document).on('click','#save-btn', sendUrl);
+        document.onkeydown = function (event) {
+            switch(event.keyCode) {
+                case 10:
+                case 13:
+                    sendUrl();
+                default: break;
+            }
+        }
+	$(document).on("as_complete", function(){
+            if (window.success) {
+		$('#pages-list .list-group-item:first-child').css({height: "0px", opacity: 0});
+		$('#pages-list .list-group-item:first-child').animate({height: "110px", opacity: 1}, 1000);
+            }
+	});
+</script>
