@@ -1,0 +1,55 @@
+<div id="authForm">
+  <input type="email" placeholder="E-mail" name="email" id="input-email">
+  <input type="password" placeholder="Пароль" name="password" id="input-password">
+  <span class="btn btn-positive btn-block" id="button-auth">Войти</span>
+  <p style="text-align: center; margin: 25px 0 8px;"><span data-href="[[++site_url]][[~2]]" class="external-link link">Регистрация</span></p>
+</div>
+<script type="text/javascript">
+	if (app.fromStorage(app.APP_KEY.token)) {
+		app.currentPost.token = app.fromStorage(app.APP_KEY.token);
+		$('#sidebar li').remove();
+		app.netCall();
+	}
+	app.toStorage(app.currentPost.action, {});
+	$("#input-email").focus();
+	if (app.data.message) {
+		$("input").css({"border-color":"#c00","background-color":"#fdd"});
+		$("#authForm").append("<div id='div-message' style='color:#c00;'>"+app.data.message+"</div>");
+	}
+	$(document).on("click", "#button-auth", function(){
+		$("#div-message").remove();
+		$("input").css({"border-color":"#ddd","background-color":"#fff"});
+		app.currentPost = {
+			action: "auth",
+			username: $("#input-email").val(),
+			password: $("#input-password").val()
+		};
+		if (!app.currentPost.username ||
+			!app.currentPost.password) {
+			$("input").css({"border-color":"#c00","background-color":"#fdd"});
+			return false;
+		} else {
+			app.mainSuccess = app.currentSuccess;
+			app.currentSuccess = function(data) {
+				if (data.success === false) {
+					app.data.message = data.message;
+				} else {
+					$('#sidebar li').remove();
+					app.toStorage(app.APP_KEY, data);
+					app.toStorage(app.APP_KEY.token, data.token);
+					//app.toStorage(app.APP_KEY, );
+				}
+				app.toStorage(app.currentPost.action, {});
+				app.currentPost = {action: app.APP_KEY};
+				app.currentSuccess = app.mainSuccess;
+				app.createLayout(data);
+			}
+			app.mainFail = app.currentFail;
+			app.currentFail = function(data){
+				app.currentFail = app.mainFail;
+				app.netCall();
+			}
+			app.netCall();
+		}
+	});
+</script>

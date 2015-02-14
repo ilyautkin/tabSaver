@@ -50,7 +50,7 @@
 		$('#save-btn').addClass('disabled');
 		window.complite = false;
 		animateProgress($('#adding-progress'), $('#progress-wrapper'));
-		$.post(document.location.href.split('?')[0], {url: url}, function(data){
+		$.post(document.location.href.split('?')[0], {action: 'addurl', url: url}, function(data){
 			$('#url-input').removeAttr('disabled');
 			$('#save-btn').removeClass('disabled');
 			//$('#new-item').replaceWith(data.html);

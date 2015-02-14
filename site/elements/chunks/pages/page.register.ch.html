@@ -3,7 +3,7 @@
     &activation=`1`
     &activationEmailSubject=`Подтверждение регистрации`
     &activationResourceId=`5`
-    &successMsg=`<br><br><br>Вам нужно подтвердить свою регистрацию.`
+    &successMsg=`Вам нужно подтвердить свою регистрацию. Мы отправили вам письмо с ссылкой для подтверждения.`
     &usergroups=`Users`
     &validate=`nospam:blank,
       password:required:minLength=^8^,
@@ -16,7 +16,7 @@
 [[!+error.message:eq=``:then=`
      <div class="row">
       <form action="[[~[[*id]]]]" class="form-horizontal col-md-offset-2 col-md-7" method="post">
-		<h2 class="col-sm-offset-4 col-sm-8"><br><br>[[*longtitle:default=`[[*pagetitle]]`]]<br><br></h2>
+		<h2 class="col-sm-offset-4 col-sm-8" style="padding-left: 0;">[[*longtitle:default=`[[*pagetitle]]`]]</h2>
         <input type="hidden" name="nospam" value="[[!+reg.nospam]]" />
         <div class="form-group">
         <label for="email" class="col-sm-4 control-label">Электронная почта</label>
@@ -60,7 +60,7 @@
             </span>
         </div>
         </div>
-        
+        <br>
         <div class="form-group">
         <div class="col-sm-offset-4 col-sm-8">
             <input type="submit" value="Зарегистрироваться!"
@@ -70,4 +70,4 @@
        </form>
       </div>
 
-`:else=`<div class="alert alert-success">[[!+error.message]]</div>`]]
+`:else=`<br><br><br><div class="alert alert-success">[[!+error.message]]</div>`]]

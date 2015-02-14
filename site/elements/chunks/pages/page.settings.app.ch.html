@@ -1,0 +1,23 @@
+<ul class="table-view" id="list-settings">
+  <li class="table-view-cell media" data-action="logout">
+	<span class="media-object pull-left icon icon-share"></span>
+	<div class="media-body">
+	  Выйти
+	</div>
+  </li>
+</ul>
+<script type="text/javascript">
+	$(document).on("click touchend", "#list-settings .table-view-cell", function(){
+		switch($(this).attr("data-action")) {
+			case "logout":
+				app.toStorage(app.APP_KEY.token, "")
+				app.currentPost.token = "";
+				app.currentPost = {action: app.APP_KEY};
+				$('#sidebar li').remove();
+				app.netCall();
+				break;
+			default:
+				return false;
+		}
+	});
+</script>
