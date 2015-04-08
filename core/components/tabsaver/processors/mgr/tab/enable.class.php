@@ -3,9 +3,9 @@
 /**
  * Enable an Item
  */
-class tabSaverItemEnableProcessor extends modObjectProcessor {
-	public $objectType = 'tabSaverItem';
-	public $classKey = 'tabSaverItem';
+class tabSaverTabEnableProcessor extends modObjectProcessor {
+	public $objectType = 'tabSaverTab';
+	public $classKey = 'tabSaverTab';
 	public $languageTopics = array('tabsaver');
 	//public $permission = 'save';
 
@@ -24,12 +24,12 @@ class tabSaverItemEnableProcessor extends modObjectProcessor {
 		}
 
 		foreach ($ids as $id) {
-			/** @var tabSaverItem $object */
+			/** @var tabSaverTab $object */
 			if (!$object = $this->modx->getObject($this->classKey, $id)) {
 				return $this->failure($this->modx->lexicon('tabsaver_item_err_nf'));
 			}
 
-			$object->set('active', true);
+			$object->set('deleted', false);
 			$object->save();
 		}
 
@@ -38,4 +38,4 @@ class tabSaverItemEnableProcessor extends modObjectProcessor {
 
 }
 
-return 'tabSaverItemEnableProcessor';
+return 'tabSaverTabEnableProcessor';

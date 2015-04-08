@@ -1,18 +1,20 @@
-<div class="top-border"></div>
-<div class="jumbotron">
-	<h2>[[*pagetitle]]</h2>
-	<p>[[*introtext]]</p>
+<div class="top-border"><span class="add-url-button glyphicon glyphicon-plus visible-xs" onclick="$('.header').toggleClass('hidden-xs');"></span><h2 class="visible-xs">OfflinePages</h2></div>
+<div class="header jumbotron hidden-xs">
+        <h2 class="hidden-xs">[[*pagetitle]]</h2>
+	<p class="hidden-xs">[[*introtext]]</p>
 	<div class="row" style="position: relative;">
-		<div class="col-xs-10">
+		<div class="col-md-10 col-sm-8 col-xs-7">
 			<input type="url" name="url" id="url-input" placeholder="URL" class="form-control" value="[[!get? &need=`url`]]">
 		</div>
-		<div class="col-xs-2">
+		<div class="col-md-2 col-sm-4 col-xs-5">
 			<span class="btn btn-success form-control" id="save-btn">Сохранить</span>
 		</div>
 		<div id="progress-wrapper" class="jumbotron">
 			<div class="progress"><div class="progress-bar" role="progressbar" id="adding-progress"></div></div>
 		</div>
 	</div>
+        <br><br>
+        Вы можете перетащить ссылку <a href="javascript:window.location.replace('http://offlinepages.ru/?url='+document.location.href);">Сохранить</a> на панель закладок и добавлять страницы в список одним кликом мыши.
 </div>
 <div class="list-group" id="pages-list">
     [[!pdoResources?
@@ -22,6 +24,7 @@
         &sortby=`{"id":"DESC"}`
         &where=`{"uid":[[!+modx.user.id]],"deleted":0}`
         &tpl=`tpl.tabSaverTab`
+        &limit=`50`
     ]]
 </div>
 <script type="text/javascript">
@@ -43,7 +46,7 @@
 		}, 500);
 
 	}
-	function saveUrl(url) {
+	function saveUrl(url, redirect) {
 		$('#progress-wrapper').show();
 		$('#url-input').parent().removeClass('has-error');
 		$('#url-input').attr('disabled','disabled');
@@ -57,6 +60,11 @@
                         if (data.success) {
                             $('#url-input').val('');
                             $('#pages-list').prepend(data.html);
+                            if (redirect) {
+                                window.setTimeout(function(){
+                                    document.location.href = url;
+                                }, 500);
+                            }
                         } else {
                             $('#url-input').parent().addClass('has-error');
                         }
@@ -73,7 +81,7 @@
             }
         }
 	if ($('#url-input').val() != '') {
-		saveUrl($('#url-input').val());
+		saveUrl($('#url-input').val(), true);
 	}
 	$(document).on('click','#save-btn', sendUrl);
         document.onkeydown = function (event) {
@@ -90,4 +98,49 @@
 		$('#pages-list .list-group-item:first-child').animate({height: "110px", opacity: 1}, 1000);
             }
 	});
+        $(document).on("click", ".list-group-item", function(){
+            if ($(this).hasClass("open")) {
+                return false;
+            }
+            $(".list-group-item").removeClass("open");
+            $(this).addClass("open");
+            var destination = $(this).offset().top;
+            $('body').animate({ scrollTop: destination }, 500);
+        });
+        $(document).on("click", ".close-page", function(){
+            var destination = $(this).parent().parent().parent().parent().offset().top;
+            $('body').animate({ scrollTop: destination }, 500);
+            window.setTimeout(function(){
+                $(".list-group-item").removeClass("open");
+            }, 500);
+            return false;
+        });
+        $(document).on("click", ".remove-page", function(){
+            var destination = $("#page-" + $(this).attr("data-target"));
+            $('body').animate({ scrollTop: destination.offset().top }, 500);
+            window.setTimeout(function(){
+                destination.removeClass("open");
+                destination.hide();
+            }, 500);
+            try {
+                var toDelete = localStorage.getItem('toDelete') || "[]";
+                toDelete = JSON.parse(toDelete);
+                toDelete.push($(this).attr("data-target")*1);
+                localStorage.setItem('toDelete', JSON.stringify(toDelete));
+            } catch (e) {
+                return false;
+            }
+        });
+        try {
+            var toDelete = localStorage.getItem('toDelete');
+            if (toDelete && toDelete != "[]") {
+                $.post(document.location.href.split('?')[0], {action: 'delete', todelete: toDelete}, function(data){
+                    $.each(JSON.parse(toDelete), function(){
+                        $("#page-" + this).hide();
+                    });
+                    toDelete = [];
+                    localStorage.setItem('toDelete', JSON.stringify(toDelete));
+                }, 'json');
+            }
+        } catch (e) {}
 </script>

@@ -125,6 +125,9 @@ body.tabspage a:hover {
 	width: 80px;
 	height: 80px;
 	background: #eee;
+        border-radius: 4px;
+        background-size: auto 80px;
+        background-position: center center;
 }
 .list-group-item {
 	overflow: hidden;
@@ -157,4 +160,110 @@ body.tabspage a:hover {
 	right: 0;
 	padding: 15px;
 	display: none;
+}
+#pages-list .list-group-item {
+    cursor: pointer;
+    -moz-user-select: none;
+    -o-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+#pages-list .list-group-item:hover {
+    background: #f3f3f3;
+}
+#pages-list .list-group-item:active div {
+    position: relative;
+    top: 2px;
+    left: 2px;
+}
+
+.add-url-button {
+    font-size: 24px;
+    color: #fff;
+    padding: 11px 16px 14px;
+    float: right;
+    cursor: pointer;
+}
+.top-border h2 {
+    margin: 0;
+    color: #fff;
+    padding: 9px 0 8px 16px;
+    cursor: default;
+}
+.progress {
+    background-color: #CBCBCB;
+}
+#pages-list .item-content .list-group-item-img {
+    display: none;
+    width: 100%;
+    margin: 4px 0 8px;
+    height: auto;
+}
+#pages-list .list-group-item.open {
+    background: #fff;
+    cursor: auto;
+    height: auto;
+    -moz-user-select: auto;
+    -o-user-select: auto;
+    -khtml-user-select: auto;
+    -webkit-user-select: auto;
+    user-select: auto;
+}
+#pages-list .list-group-item.open:active div {
+    position: static;
+    top: 0;
+    left: 0;
+}
+#pages-list .open .item-content {
+    max-height: none;
+    height: auto;
+}
+#pages-list .open .list-group-item-img {
+    display: block;
+}
+#pages-list .open .image-placeholder {
+    display: none;
+}
+#pages-list .open .readicon {
+    display: none;
+}
+.action-buttons {
+    display: none;
+    margin: 30px 0 20px;
+}
+#pages-list .open .action-buttons {
+    display: block;
+}
+@media (max-width: 768px) {
+    .readicon {
+        margin: 8px 15px 25px 0
+    }
+    #pages-list {
+        margin: 0;
+    }
+    #pages-list .list-group-item-heading {
+        font-size: 16px;
+        line-height: 105%;
+    }
+    #pages-list .list-group-item-text {
+        font-size: 12px;
+        line-height: 15px;
+    }
+    #pages-list .list-group-item {
+        border-radius: 0;
+    }
+    .container {
+        padding: 0;
+    }
+    .top-border {
+        height: 50px;
+    }
+    .header {
+        margin: 0;
+        border-radius: 0;
+    }
+    #progress-wrapper {
+        padding: 10px 15px 25px;
+    }
 }

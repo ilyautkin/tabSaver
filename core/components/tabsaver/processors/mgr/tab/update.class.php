@@ -3,9 +3,9 @@
 /**
  * Update an Item
  */
-class tabSaverItemUpdateProcessor extends modObjectUpdateProcessor {
-	public $objectType = 'tabSaverItem';
-	public $classKey = 'tabSaverItem';
+class tabSaverTabUpdateProcessor extends modObjectUpdateProcessor {
+	public $objectType = 'tabSaverTab';
+	public $classKey = 'tabSaverTab';
 	public $languageTopics = array('tabsaver');
 	//public $permission = 'save';
 
@@ -46,4 +46,4 @@ class tabSaverItemUpdateProcessor extends modObjectUpdateProcessor {
 	}
 }
 
-return 'tabSaverItemUpdateProcessor';
+return 'tabSaverTabUpdateProcessor';
